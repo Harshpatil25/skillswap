@@ -114,11 +114,11 @@ function ExplorePage() {
         ...w,
         skillName: w.skill?.name,
         category: w.skill?.category,
-        ratingCount: w.host?.rating ? 20 : 0,
-        rating: w.host?.rating ?? null,
+        ratingCount: w.rating_count,
+        rating: w.rating ?? w.host?.rating ?? null,
         seatsTaken: w.seats_taken,
         startsAt: w.starts_at,
-        views: w.views_count ?? 0,
+        views: w.views,
       })),
     ) as Array<WorkshopWithHost & { match: { score: number; distanceKm: number | null } }>;
 
@@ -159,13 +159,13 @@ function ExplorePage() {
 
   const rankedInternships = useMemo(() => {
     const filtered = (internships ?? []).filter((i) =>
-      matchText([i.title, i.description, i.location, i.company?.name, ...(i.skills_required ?? [])]),
+      matchText([i.title, i.description, i.location, i.company?.name, ...(i.skills ?? [])]),
     );
     return rankByRecommendation(
       learner,
       filtered.map((i) => ({
         ...i,
-        skillName: (i.skills_required ?? []).join(" "),
+        skillName: (i.skills ?? []).join(" "),
         title: i.title,
       })),
     ) as Array<InternshipWithCompany & { match: { score: number; distanceKm: number | null } }>;

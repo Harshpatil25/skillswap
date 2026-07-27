@@ -93,16 +93,9 @@ function MentorProfilePage() {
                     <Languages className="size-4" /> {(mentor.languages ?? []).join(", ")}
                   </span>
                 )}
-                {mentor.website_url && (
-                  <a
-                    href={mentor.website_url}
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    className="flex items-center gap-1 text-primary hover:underline"
-                  >
-                    <Globe className="size-4" /> Website
-                  </a>
-                )}
+                <span className="flex items-center gap-1">
+                  <Globe className="size-4" /> {mentor.experience_years} yrs experience
+                </span>
               </div>
               <div className="mt-4 flex flex-wrap gap-2">
                 {skills.map((s) => (
@@ -182,7 +175,7 @@ function MentorProfilePage() {
               <h3 className="text-sm font-bold">Availability</h3>
               <p className="mt-2 flex items-center gap-2 text-sm text-muted-foreground">
                 <CalendarDays className="size-4" />
-                {mentor.availability ?? "Flexible — message to arrange"}
+                Flexible — book a session below
               </p>
             </div>
             {mentor.latitude != null && mentor.longitude != null && (
