@@ -9,38 +9,181 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as InternshipsRouteImport } from './routes/internships'
+import { Route as HowItWorksRouteImport } from './routes/how-it-works'
+import { Route as ExploreRouteImport } from './routes/explore'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as MentorsIndexRouteImport } from './routes/mentors.index'
+import { Route as WorkshopsSlugRouteImport } from './routes/workshops.$slug'
+import { Route as MentorsMentorIdRouteImport } from './routes/mentors.$mentorId'
 
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InternshipsRoute = InternshipsRouteImport.update({
+  id: '/internships',
+  path: '/internships',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HowItWorksRoute = HowItWorksRouteImport.update({
+  id: '/how-it-works',
+  path: '/how-it-works',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExploreRoute = ExploreRouteImport.update({
+  id: '/explore',
+  path: '/explore',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MentorsIndexRoute = MentorsIndexRouteImport.update({
+  id: '/mentors/',
+  path: '/mentors/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WorkshopsSlugRoute = WorkshopsSlugRouteImport.update({
+  id: '/workshops/$slug',
+  path: '/workshops/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MentorsMentorIdRoute = MentorsMentorIdRouteImport.update({
+  id: '/mentors/$mentorId',
+  path: '/mentors/$mentorId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/explore': typeof ExploreRoute
+  '/how-it-works': typeof HowItWorksRoute
+  '/internships': typeof InternshipsRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/mentors/$mentorId': typeof MentorsMentorIdRoute
+  '/workshops/$slug': typeof WorkshopsSlugRoute
+  '/mentors/': typeof MentorsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/explore': typeof ExploreRoute
+  '/how-it-works': typeof HowItWorksRoute
+  '/internships': typeof InternshipsRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/mentors/$mentorId': typeof MentorsMentorIdRoute
+  '/workshops/$slug': typeof WorkshopsSlugRoute
+  '/mentors': typeof MentorsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/explore': typeof ExploreRoute
+  '/how-it-works': typeof HowItWorksRoute
+  '/internships': typeof InternshipsRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/mentors/$mentorId': typeof MentorsMentorIdRoute
+  '/workshops/$slug': typeof WorkshopsSlugRoute
+  '/mentors/': typeof MentorsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/explore'
+    | '/how-it-works'
+    | '/internships'
+    | '/reset-password'
+    | '/mentors/$mentorId'
+    | '/workshops/$slug'
+    | '/mentors/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/auth'
+    | '/explore'
+    | '/how-it-works'
+    | '/internships'
+    | '/reset-password'
+    | '/mentors/$mentorId'
+    | '/workshops/$slug'
+    | '/mentors'
+  id:
+    | '__root__'
+    | '/'
+    | '/auth'
+    | '/explore'
+    | '/how-it-works'
+    | '/internships'
+    | '/reset-password'
+    | '/mentors/$mentorId'
+    | '/workshops/$slug'
+    | '/mentors/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthRoute: typeof AuthRoute
+  ExploreRoute: typeof ExploreRoute
+  HowItWorksRoute: typeof HowItWorksRoute
+  InternshipsRoute: typeof InternshipsRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
+  MentorsMentorIdRoute: typeof MentorsMentorIdRoute
+  WorkshopsSlugRoute: typeof WorkshopsSlugRoute
+  MentorsIndexRoute: typeof MentorsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/internships': {
+      id: '/internships'
+      path: '/internships'
+      fullPath: '/internships'
+      preLoaderRoute: typeof InternshipsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/how-it-works': {
+      id: '/how-it-works'
+      path: '/how-it-works'
+      fullPath: '/how-it-works'
+      preLoaderRoute: typeof HowItWorksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/explore': {
+      id: '/explore'
+      path: '/explore'
+      fullPath: '/explore'
+      preLoaderRoute: typeof ExploreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +191,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/mentors/': {
+      id: '/mentors/'
+      path: '/mentors'
+      fullPath: '/mentors/'
+      preLoaderRoute: typeof MentorsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/workshops/$slug': {
+      id: '/workshops/$slug'
+      path: '/workshops/$slug'
+      fullPath: '/workshops/$slug'
+      preLoaderRoute: typeof WorkshopsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mentors/$mentorId': {
+      id: '/mentors/$mentorId'
+      path: '/mentors/$mentorId'
+      fullPath: '/mentors/$mentorId'
+      preLoaderRoute: typeof MentorsMentorIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthRoute: AuthRoute,
+  ExploreRoute: ExploreRoute,
+  HowItWorksRoute: HowItWorksRoute,
+  InternshipsRoute: InternshipsRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
+  MentorsMentorIdRoute: MentorsMentorIdRoute,
+  WorkshopsSlugRoute: WorkshopsSlugRoute,
+  MentorsIndexRoute: MentorsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
