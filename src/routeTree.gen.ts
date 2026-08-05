@@ -14,10 +14,29 @@ import { Route as InternshipsRouteImport } from './routes/internships'
 import { Route as HowItWorksRouteImport } from './routes/how-it-works'
 import { Route as ExploreRouteImport } from './routes/explore'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as MentorsIndexRouteImport } from './routes/mentors.index'
 import { Route as WorkshopsSlugRouteImport } from './routes/workshops.$slug'
 import { Route as MentorsMentorIdRouteImport } from './routes/mentors.$mentorId'
+import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
+import { Route as AuthenticatedNotificationsRouteImport } from './routes/_authenticated/notifications'
+import { Route as AuthenticatedDashboardIndexRouteImport } from './routes/_authenticated/dashboard.index'
+import { Route as AuthenticatedDashboardStudentIndexRouteImport } from './routes/_authenticated/dashboard.student.index'
+import { Route as AuthenticatedDashboardMentorIndexRouteImport } from './routes/_authenticated/dashboard.mentor.index'
+import { Route as AuthenticatedDashboardCompanyIndexRouteImport } from './routes/_authenticated/dashboard.company.index'
+import { Route as AuthenticatedDashboardAdminIndexRouteImport } from './routes/_authenticated/dashboard.admin.index'
+import { Route as AuthenticatedDashboardStudentSavedRouteImport } from './routes/_authenticated/dashboard.student.saved'
+import { Route as AuthenticatedDashboardStudentLearningRouteImport } from './routes/_authenticated/dashboard.student.learning'
+import { Route as AuthenticatedDashboardStudentCertificatesRouteImport } from './routes/_authenticated/dashboard.student.certificates'
+import { Route as AuthenticatedDashboardMentorWorkshopsRouteImport } from './routes/_authenticated/dashboard.mentor.workshops'
+import { Route as AuthenticatedDashboardMentorParticipantsRouteImport } from './routes/_authenticated/dashboard.mentor.participants'
+import { Route as AuthenticatedDashboardCompanyProfileRouteImport } from './routes/_authenticated/dashboard.company.profile'
+import { Route as AuthenticatedDashboardCompanyInternshipsRouteImport } from './routes/_authenticated/dashboard.company.internships'
+import { Route as AuthenticatedDashboardCompanyApplicantsRouteImport } from './routes/_authenticated/dashboard.company.applicants'
+import { Route as AuthenticatedDashboardAdminWorkshopsRouteImport } from './routes/_authenticated/dashboard.admin.workshops'
+import { Route as AuthenticatedDashboardAdminUsersRouteImport } from './routes/_authenticated/dashboard.admin.users'
+import { Route as AuthenticatedDashboardAdminReportsRouteImport } from './routes/_authenticated/dashboard.admin.reports'
 
 const ResetPasswordRoute = ResetPasswordRouteImport.update({
   id: '/reset-password',
@@ -44,6 +63,10 @@ const AuthRoute = AuthRouteImport.update({
   path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -64,6 +87,113 @@ const MentorsMentorIdRoute = MentorsMentorIdRouteImport.update({
   path: '/mentors/$mentorId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedSettingsRoute = AuthenticatedSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedNotificationsRoute =
+  AuthenticatedNotificationsRouteImport.update({
+    id: '/notifications',
+    path: '/notifications',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedDashboardIndexRoute =
+  AuthenticatedDashboardIndexRouteImport.update({
+    id: '/dashboard/',
+    path: '/dashboard/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedDashboardStudentIndexRoute =
+  AuthenticatedDashboardStudentIndexRouteImport.update({
+    id: '/dashboard/student/',
+    path: '/dashboard/student/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedDashboardMentorIndexRoute =
+  AuthenticatedDashboardMentorIndexRouteImport.update({
+    id: '/dashboard/mentor/',
+    path: '/dashboard/mentor/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedDashboardCompanyIndexRoute =
+  AuthenticatedDashboardCompanyIndexRouteImport.update({
+    id: '/dashboard/company/',
+    path: '/dashboard/company/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedDashboardAdminIndexRoute =
+  AuthenticatedDashboardAdminIndexRouteImport.update({
+    id: '/dashboard/admin/',
+    path: '/dashboard/admin/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedDashboardStudentSavedRoute =
+  AuthenticatedDashboardStudentSavedRouteImport.update({
+    id: '/dashboard/student/saved',
+    path: '/dashboard/student/saved',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedDashboardStudentLearningRoute =
+  AuthenticatedDashboardStudentLearningRouteImport.update({
+    id: '/dashboard/student/learning',
+    path: '/dashboard/student/learning',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedDashboardStudentCertificatesRoute =
+  AuthenticatedDashboardStudentCertificatesRouteImport.update({
+    id: '/dashboard/student/certificates',
+    path: '/dashboard/student/certificates',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedDashboardMentorWorkshopsRoute =
+  AuthenticatedDashboardMentorWorkshopsRouteImport.update({
+    id: '/dashboard/mentor/workshops',
+    path: '/dashboard/mentor/workshops',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedDashboardMentorParticipantsRoute =
+  AuthenticatedDashboardMentorParticipantsRouteImport.update({
+    id: '/dashboard/mentor/participants',
+    path: '/dashboard/mentor/participants',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedDashboardCompanyProfileRoute =
+  AuthenticatedDashboardCompanyProfileRouteImport.update({
+    id: '/dashboard/company/profile',
+    path: '/dashboard/company/profile',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedDashboardCompanyInternshipsRoute =
+  AuthenticatedDashboardCompanyInternshipsRouteImport.update({
+    id: '/dashboard/company/internships',
+    path: '/dashboard/company/internships',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedDashboardCompanyApplicantsRoute =
+  AuthenticatedDashboardCompanyApplicantsRouteImport.update({
+    id: '/dashboard/company/applicants',
+    path: '/dashboard/company/applicants',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedDashboardAdminWorkshopsRoute =
+  AuthenticatedDashboardAdminWorkshopsRouteImport.update({
+    id: '/dashboard/admin/workshops',
+    path: '/dashboard/admin/workshops',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedDashboardAdminUsersRoute =
+  AuthenticatedDashboardAdminUsersRouteImport.update({
+    id: '/dashboard/admin/users',
+    path: '/dashboard/admin/users',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedDashboardAdminReportsRoute =
+  AuthenticatedDashboardAdminReportsRouteImport.update({
+    id: '/dashboard/admin/reports',
+    path: '/dashboard/admin/reports',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -72,9 +202,27 @@ export interface FileRoutesByFullPath {
   '/how-it-works': typeof HowItWorksRoute
   '/internships': typeof InternshipsRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/notifications': typeof AuthenticatedNotificationsRoute
+  '/settings': typeof AuthenticatedSettingsRoute
   '/mentors/$mentorId': typeof MentorsMentorIdRoute
   '/workshops/$slug': typeof WorkshopsSlugRoute
   '/mentors/': typeof MentorsIndexRoute
+  '/dashboard/': typeof AuthenticatedDashboardIndexRoute
+  '/dashboard/admin/reports': typeof AuthenticatedDashboardAdminReportsRoute
+  '/dashboard/admin/users': typeof AuthenticatedDashboardAdminUsersRoute
+  '/dashboard/admin/workshops': typeof AuthenticatedDashboardAdminWorkshopsRoute
+  '/dashboard/company/applicants': typeof AuthenticatedDashboardCompanyApplicantsRoute
+  '/dashboard/company/internships': typeof AuthenticatedDashboardCompanyInternshipsRoute
+  '/dashboard/company/profile': typeof AuthenticatedDashboardCompanyProfileRoute
+  '/dashboard/mentor/participants': typeof AuthenticatedDashboardMentorParticipantsRoute
+  '/dashboard/mentor/workshops': typeof AuthenticatedDashboardMentorWorkshopsRoute
+  '/dashboard/student/certificates': typeof AuthenticatedDashboardStudentCertificatesRoute
+  '/dashboard/student/learning': typeof AuthenticatedDashboardStudentLearningRoute
+  '/dashboard/student/saved': typeof AuthenticatedDashboardStudentSavedRoute
+  '/dashboard/admin/': typeof AuthenticatedDashboardAdminIndexRoute
+  '/dashboard/company/': typeof AuthenticatedDashboardCompanyIndexRoute
+  '/dashboard/mentor/': typeof AuthenticatedDashboardMentorIndexRoute
+  '/dashboard/student/': typeof AuthenticatedDashboardStudentIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -83,21 +231,58 @@ export interface FileRoutesByTo {
   '/how-it-works': typeof HowItWorksRoute
   '/internships': typeof InternshipsRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/notifications': typeof AuthenticatedNotificationsRoute
+  '/settings': typeof AuthenticatedSettingsRoute
   '/mentors/$mentorId': typeof MentorsMentorIdRoute
   '/workshops/$slug': typeof WorkshopsSlugRoute
   '/mentors': typeof MentorsIndexRoute
+  '/dashboard': typeof AuthenticatedDashboardIndexRoute
+  '/dashboard/admin/reports': typeof AuthenticatedDashboardAdminReportsRoute
+  '/dashboard/admin/users': typeof AuthenticatedDashboardAdminUsersRoute
+  '/dashboard/admin/workshops': typeof AuthenticatedDashboardAdminWorkshopsRoute
+  '/dashboard/company/applicants': typeof AuthenticatedDashboardCompanyApplicantsRoute
+  '/dashboard/company/internships': typeof AuthenticatedDashboardCompanyInternshipsRoute
+  '/dashboard/company/profile': typeof AuthenticatedDashboardCompanyProfileRoute
+  '/dashboard/mentor/participants': typeof AuthenticatedDashboardMentorParticipantsRoute
+  '/dashboard/mentor/workshops': typeof AuthenticatedDashboardMentorWorkshopsRoute
+  '/dashboard/student/certificates': typeof AuthenticatedDashboardStudentCertificatesRoute
+  '/dashboard/student/learning': typeof AuthenticatedDashboardStudentLearningRoute
+  '/dashboard/student/saved': typeof AuthenticatedDashboardStudentSavedRoute
+  '/dashboard/admin': typeof AuthenticatedDashboardAdminIndexRoute
+  '/dashboard/company': typeof AuthenticatedDashboardCompanyIndexRoute
+  '/dashboard/mentor': typeof AuthenticatedDashboardMentorIndexRoute
+  '/dashboard/student': typeof AuthenticatedDashboardStudentIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
   '/explore': typeof ExploreRoute
   '/how-it-works': typeof HowItWorksRoute
   '/internships': typeof InternshipsRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/_authenticated/notifications': typeof AuthenticatedNotificationsRoute
+  '/_authenticated/settings': typeof AuthenticatedSettingsRoute
   '/mentors/$mentorId': typeof MentorsMentorIdRoute
   '/workshops/$slug': typeof WorkshopsSlugRoute
   '/mentors/': typeof MentorsIndexRoute
+  '/_authenticated/dashboard/': typeof AuthenticatedDashboardIndexRoute
+  '/_authenticated/dashboard/admin/reports': typeof AuthenticatedDashboardAdminReportsRoute
+  '/_authenticated/dashboard/admin/users': typeof AuthenticatedDashboardAdminUsersRoute
+  '/_authenticated/dashboard/admin/workshops': typeof AuthenticatedDashboardAdminWorkshopsRoute
+  '/_authenticated/dashboard/company/applicants': typeof AuthenticatedDashboardCompanyApplicantsRoute
+  '/_authenticated/dashboard/company/internships': typeof AuthenticatedDashboardCompanyInternshipsRoute
+  '/_authenticated/dashboard/company/profile': typeof AuthenticatedDashboardCompanyProfileRoute
+  '/_authenticated/dashboard/mentor/participants': typeof AuthenticatedDashboardMentorParticipantsRoute
+  '/_authenticated/dashboard/mentor/workshops': typeof AuthenticatedDashboardMentorWorkshopsRoute
+  '/_authenticated/dashboard/student/certificates': typeof AuthenticatedDashboardStudentCertificatesRoute
+  '/_authenticated/dashboard/student/learning': typeof AuthenticatedDashboardStudentLearningRoute
+  '/_authenticated/dashboard/student/saved': typeof AuthenticatedDashboardStudentSavedRoute
+  '/_authenticated/dashboard/admin/': typeof AuthenticatedDashboardAdminIndexRoute
+  '/_authenticated/dashboard/company/': typeof AuthenticatedDashboardCompanyIndexRoute
+  '/_authenticated/dashboard/mentor/': typeof AuthenticatedDashboardMentorIndexRoute
+  '/_authenticated/dashboard/student/': typeof AuthenticatedDashboardStudentIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -108,9 +293,27 @@ export interface FileRouteTypes {
     | '/how-it-works'
     | '/internships'
     | '/reset-password'
+    | '/notifications'
+    | '/settings'
     | '/mentors/$mentorId'
     | '/workshops/$slug'
     | '/mentors/'
+    | '/dashboard/'
+    | '/dashboard/admin/reports'
+    | '/dashboard/admin/users'
+    | '/dashboard/admin/workshops'
+    | '/dashboard/company/applicants'
+    | '/dashboard/company/internships'
+    | '/dashboard/company/profile'
+    | '/dashboard/mentor/participants'
+    | '/dashboard/mentor/workshops'
+    | '/dashboard/student/certificates'
+    | '/dashboard/student/learning'
+    | '/dashboard/student/saved'
+    | '/dashboard/admin/'
+    | '/dashboard/company/'
+    | '/dashboard/mentor/'
+    | '/dashboard/student/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -119,24 +322,62 @@ export interface FileRouteTypes {
     | '/how-it-works'
     | '/internships'
     | '/reset-password'
+    | '/notifications'
+    | '/settings'
     | '/mentors/$mentorId'
     | '/workshops/$slug'
     | '/mentors'
+    | '/dashboard'
+    | '/dashboard/admin/reports'
+    | '/dashboard/admin/users'
+    | '/dashboard/admin/workshops'
+    | '/dashboard/company/applicants'
+    | '/dashboard/company/internships'
+    | '/dashboard/company/profile'
+    | '/dashboard/mentor/participants'
+    | '/dashboard/mentor/workshops'
+    | '/dashboard/student/certificates'
+    | '/dashboard/student/learning'
+    | '/dashboard/student/saved'
+    | '/dashboard/admin'
+    | '/dashboard/company'
+    | '/dashboard/mentor'
+    | '/dashboard/student'
   id:
     | '__root__'
     | '/'
+    | '/_authenticated'
     | '/auth'
     | '/explore'
     | '/how-it-works'
     | '/internships'
     | '/reset-password'
+    | '/_authenticated/notifications'
+    | '/_authenticated/settings'
     | '/mentors/$mentorId'
     | '/workshops/$slug'
     | '/mentors/'
+    | '/_authenticated/dashboard/'
+    | '/_authenticated/dashboard/admin/reports'
+    | '/_authenticated/dashboard/admin/users'
+    | '/_authenticated/dashboard/admin/workshops'
+    | '/_authenticated/dashboard/company/applicants'
+    | '/_authenticated/dashboard/company/internships'
+    | '/_authenticated/dashboard/company/profile'
+    | '/_authenticated/dashboard/mentor/participants'
+    | '/_authenticated/dashboard/mentor/workshops'
+    | '/_authenticated/dashboard/student/certificates'
+    | '/_authenticated/dashboard/student/learning'
+    | '/_authenticated/dashboard/student/saved'
+    | '/_authenticated/dashboard/admin/'
+    | '/_authenticated/dashboard/company/'
+    | '/_authenticated/dashboard/mentor/'
+    | '/_authenticated/dashboard/student/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   AuthRoute: typeof AuthRoute
   ExploreRoute: typeof ExploreRoute
   HowItWorksRoute: typeof HowItWorksRoute
@@ -184,6 +425,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -212,11 +460,196 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MentorsMentorIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/settings': {
+      id: '/_authenticated/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof AuthenticatedSettingsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/notifications': {
+      id: '/_authenticated/notifications'
+      path: '/notifications'
+      fullPath: '/notifications'
+      preLoaderRoute: typeof AuthenticatedNotificationsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/dashboard/': {
+      id: '/_authenticated/dashboard/'
+      path: '/dashboard'
+      fullPath: '/dashboard/'
+      preLoaderRoute: typeof AuthenticatedDashboardIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/dashboard/student/': {
+      id: '/_authenticated/dashboard/student/'
+      path: '/dashboard/student'
+      fullPath: '/dashboard/student/'
+      preLoaderRoute: typeof AuthenticatedDashboardStudentIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/dashboard/mentor/': {
+      id: '/_authenticated/dashboard/mentor/'
+      path: '/dashboard/mentor'
+      fullPath: '/dashboard/mentor/'
+      preLoaderRoute: typeof AuthenticatedDashboardMentorIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/dashboard/company/': {
+      id: '/_authenticated/dashboard/company/'
+      path: '/dashboard/company'
+      fullPath: '/dashboard/company/'
+      preLoaderRoute: typeof AuthenticatedDashboardCompanyIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/dashboard/admin/': {
+      id: '/_authenticated/dashboard/admin/'
+      path: '/dashboard/admin'
+      fullPath: '/dashboard/admin/'
+      preLoaderRoute: typeof AuthenticatedDashboardAdminIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/dashboard/student/saved': {
+      id: '/_authenticated/dashboard/student/saved'
+      path: '/dashboard/student/saved'
+      fullPath: '/dashboard/student/saved'
+      preLoaderRoute: typeof AuthenticatedDashboardStudentSavedRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/dashboard/student/learning': {
+      id: '/_authenticated/dashboard/student/learning'
+      path: '/dashboard/student/learning'
+      fullPath: '/dashboard/student/learning'
+      preLoaderRoute: typeof AuthenticatedDashboardStudentLearningRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/dashboard/student/certificates': {
+      id: '/_authenticated/dashboard/student/certificates'
+      path: '/dashboard/student/certificates'
+      fullPath: '/dashboard/student/certificates'
+      preLoaderRoute: typeof AuthenticatedDashboardStudentCertificatesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/dashboard/mentor/workshops': {
+      id: '/_authenticated/dashboard/mentor/workshops'
+      path: '/dashboard/mentor/workshops'
+      fullPath: '/dashboard/mentor/workshops'
+      preLoaderRoute: typeof AuthenticatedDashboardMentorWorkshopsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/dashboard/mentor/participants': {
+      id: '/_authenticated/dashboard/mentor/participants'
+      path: '/dashboard/mentor/participants'
+      fullPath: '/dashboard/mentor/participants'
+      preLoaderRoute: typeof AuthenticatedDashboardMentorParticipantsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/dashboard/company/profile': {
+      id: '/_authenticated/dashboard/company/profile'
+      path: '/dashboard/company/profile'
+      fullPath: '/dashboard/company/profile'
+      preLoaderRoute: typeof AuthenticatedDashboardCompanyProfileRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/dashboard/company/internships': {
+      id: '/_authenticated/dashboard/company/internships'
+      path: '/dashboard/company/internships'
+      fullPath: '/dashboard/company/internships'
+      preLoaderRoute: typeof AuthenticatedDashboardCompanyInternshipsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/dashboard/company/applicants': {
+      id: '/_authenticated/dashboard/company/applicants'
+      path: '/dashboard/company/applicants'
+      fullPath: '/dashboard/company/applicants'
+      preLoaderRoute: typeof AuthenticatedDashboardCompanyApplicantsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/dashboard/admin/workshops': {
+      id: '/_authenticated/dashboard/admin/workshops'
+      path: '/dashboard/admin/workshops'
+      fullPath: '/dashboard/admin/workshops'
+      preLoaderRoute: typeof AuthenticatedDashboardAdminWorkshopsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/dashboard/admin/users': {
+      id: '/_authenticated/dashboard/admin/users'
+      path: '/dashboard/admin/users'
+      fullPath: '/dashboard/admin/users'
+      preLoaderRoute: typeof AuthenticatedDashboardAdminUsersRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/dashboard/admin/reports': {
+      id: '/_authenticated/dashboard/admin/reports'
+      path: '/dashboard/admin/reports'
+      fullPath: '/dashboard/admin/reports'
+      preLoaderRoute: typeof AuthenticatedDashboardAdminReportsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedNotificationsRoute: typeof AuthenticatedNotificationsRoute
+  AuthenticatedSettingsRoute: typeof AuthenticatedSettingsRoute
+  AuthenticatedDashboardIndexRoute: typeof AuthenticatedDashboardIndexRoute
+  AuthenticatedDashboardAdminReportsRoute: typeof AuthenticatedDashboardAdminReportsRoute
+  AuthenticatedDashboardAdminUsersRoute: typeof AuthenticatedDashboardAdminUsersRoute
+  AuthenticatedDashboardAdminWorkshopsRoute: typeof AuthenticatedDashboardAdminWorkshopsRoute
+  AuthenticatedDashboardCompanyApplicantsRoute: typeof AuthenticatedDashboardCompanyApplicantsRoute
+  AuthenticatedDashboardCompanyInternshipsRoute: typeof AuthenticatedDashboardCompanyInternshipsRoute
+  AuthenticatedDashboardCompanyProfileRoute: typeof AuthenticatedDashboardCompanyProfileRoute
+  AuthenticatedDashboardMentorParticipantsRoute: typeof AuthenticatedDashboardMentorParticipantsRoute
+  AuthenticatedDashboardMentorWorkshopsRoute: typeof AuthenticatedDashboardMentorWorkshopsRoute
+  AuthenticatedDashboardStudentCertificatesRoute: typeof AuthenticatedDashboardStudentCertificatesRoute
+  AuthenticatedDashboardStudentLearningRoute: typeof AuthenticatedDashboardStudentLearningRoute
+  AuthenticatedDashboardStudentSavedRoute: typeof AuthenticatedDashboardStudentSavedRoute
+  AuthenticatedDashboardAdminIndexRoute: typeof AuthenticatedDashboardAdminIndexRoute
+  AuthenticatedDashboardCompanyIndexRoute: typeof AuthenticatedDashboardCompanyIndexRoute
+  AuthenticatedDashboardMentorIndexRoute: typeof AuthenticatedDashboardMentorIndexRoute
+  AuthenticatedDashboardStudentIndexRoute: typeof AuthenticatedDashboardStudentIndexRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedNotificationsRoute: AuthenticatedNotificationsRoute,
+  AuthenticatedSettingsRoute: AuthenticatedSettingsRoute,
+  AuthenticatedDashboardIndexRoute: AuthenticatedDashboardIndexRoute,
+  AuthenticatedDashboardAdminReportsRoute:
+    AuthenticatedDashboardAdminReportsRoute,
+  AuthenticatedDashboardAdminUsersRoute: AuthenticatedDashboardAdminUsersRoute,
+  AuthenticatedDashboardAdminWorkshopsRoute:
+    AuthenticatedDashboardAdminWorkshopsRoute,
+  AuthenticatedDashboardCompanyApplicantsRoute:
+    AuthenticatedDashboardCompanyApplicantsRoute,
+  AuthenticatedDashboardCompanyInternshipsRoute:
+    AuthenticatedDashboardCompanyInternshipsRoute,
+  AuthenticatedDashboardCompanyProfileRoute:
+    AuthenticatedDashboardCompanyProfileRoute,
+  AuthenticatedDashboardMentorParticipantsRoute:
+    AuthenticatedDashboardMentorParticipantsRoute,
+  AuthenticatedDashboardMentorWorkshopsRoute:
+    AuthenticatedDashboardMentorWorkshopsRoute,
+  AuthenticatedDashboardStudentCertificatesRoute:
+    AuthenticatedDashboardStudentCertificatesRoute,
+  AuthenticatedDashboardStudentLearningRoute:
+    AuthenticatedDashboardStudentLearningRoute,
+  AuthenticatedDashboardStudentSavedRoute:
+    AuthenticatedDashboardStudentSavedRoute,
+  AuthenticatedDashboardAdminIndexRoute: AuthenticatedDashboardAdminIndexRoute,
+  AuthenticatedDashboardCompanyIndexRoute:
+    AuthenticatedDashboardCompanyIndexRoute,
+  AuthenticatedDashboardMentorIndexRoute:
+    AuthenticatedDashboardMentorIndexRoute,
+  AuthenticatedDashboardStudentIndexRoute:
+    AuthenticatedDashboardStudentIndexRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AuthRoute: AuthRoute,
   ExploreRoute: ExploreRoute,
   HowItWorksRoute: HowItWorksRoute,
