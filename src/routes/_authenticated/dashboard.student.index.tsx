@@ -17,7 +17,7 @@ import {
 import { buildCareerRoadmap, recommendationScore } from "@/lib/ai/recommendations";
 import { formatDateTime } from "@/lib/format";
 
-export const Route = createFileRoute("/_authenticated/dashboard/student")({
+export const Route = createFileRoute("/_authenticated/dashboard/student/")({
   head: () => ({
     meta: [
       { title: "Student dashboard | SkillSwap" },
