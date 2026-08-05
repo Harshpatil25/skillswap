@@ -33,9 +33,9 @@ function NotificationsPage() {
       if (!profile?.id) return;
       const { error } = await supabase
         .from("notifications")
-        .update({ read: true })
+        .update({ is_read: true })
         .eq("profile_id", profile.id)
-        .eq("read", false);
+        .eq("is_read", false);
       if (error) throw error;
     },
     onSuccess: () => {
@@ -45,7 +45,7 @@ function NotificationsPage() {
     onError: (e: Error) => toast.error(e.message),
   });
 
-  const unread = notifications.filter((n) => !n.read).length;
+  const unread = notifications.filter((n) => !n.is_read).length;
 
   return (
     <DashboardShell
@@ -68,7 +68,7 @@ function NotificationsPage() {
           {notifications.map((n) => (
             <div key={n.id} className="flex items-start gap-3 p-4">
               <span
-                className={`mt-1.5 size-2 shrink-0 rounded-full ${n.read ? "bg-muted-foreground/40" : "bg-primary"}`}
+                className={`mt-1.5 size-2 shrink-0 rounded-full ${n.is_read ? "bg-muted-foreground/40" : "bg-primary"}`}
               />
               <div className="min-w-0">
                 <p className="text-sm font-medium">{n.title}</p>
