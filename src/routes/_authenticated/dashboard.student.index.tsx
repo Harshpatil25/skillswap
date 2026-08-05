@@ -14,7 +14,7 @@ import {
   useMyRegistrations,
   useWorkshops,
 } from "@/hooks/use-skillswap-data";
-import { buildCareerRoadmap, recommendationScore } from "@/lib/ai/recommendations";
+import { buildCareerRoadmap, rankByRecommendation, type LearnerContext } from "@/lib/ai/recommendations";
 import { formatDateTime } from "@/lib/format";
 
 export const Route = createFileRoute("/_authenticated/dashboard/student/")({
@@ -36,17 +36,34 @@ function StudentDashboard() {
   const { data: workshops = [], isLoading: loadingWorkshops } = useWorkshops({ limit: 24 });
 
   const registeredIds = new Set(registrations.map((r) => r.workshop_id));
-  const recommended = workshops
-    .filter((w) => !registeredIds.has(w.id))
-    .map((w) => ({ ...w, match: recommendationScore(w, profile ?? null, []) }))
-    .sort((a, b) => b.match.score - a.match.score)
-    .slice(0, 3);
+  const learner: LearnerContext = {
+    interests: registrations.map((r) => r.workshop?.category ?? "").filter(Boolean),
+    latitude: profile?.latitude ?? null,
+    longitude: profile?.longitude ?? null,
+    city: profile?.city ?? null,
+  };
+  const recommended = rankByRecommendation(
+    learner,
+    workshops
+      .filter((w) => !registeredIds.has(w.id))
+      .map((w) => ({
+        ...w,
+        skillName: w.skill?.name,
+        category: w.skill?.category,
+        ratingCount: w.rating_count,
+        seatsTaken: w.seats_taken,
+        startsAt: w.starts_at,
+      })),
+  ).slice(0, 3) as Array<(typeof workshops)[number] & { match: { score: number; distanceKm: number | null } }>;
 
   const avgProgress = registrations.length
     ? Math.round(registrations.reduce((sum, r) => sum + (r.progress ?? 0), 0) / registrations.length)
     : 0;
 
-  const roadmap = buildCareerRoadmap(profile ?? null, registrations.map((r) => r.workshop?.category ?? ""));
+  const roadmap = buildCareerRoadmap(
+    "frontend-developer",
+    registrations.map((r) => r.workshop?.category ?? ""),
+  );
 
   return (
     <DashboardShell
@@ -135,12 +152,19 @@ function StudentDashboard() {
         <SectionHeading eyebrow="AI powered" title="Your career roadmap" />
         <div className="grid gap-4 md:grid-cols-3">
           {roadmap.map((step, i) => (
-            <div key={step.title} className="surface-card space-y-2 p-5">
+            <div key={step.stage} className="surface-card space-y-2 p-5">
               <span className="text-xs font-semibold uppercase tracking-wide text-primary">
-                Step {i + 1}
+                Stage {i + 1} · {step.weeks} weeks
               </span>
-              <p className="font-semibold">{step.title}</p>
-              <p className="text-sm text-muted-foreground">{step.description}</p>
+              <p className="font-semibold">{step.stage}</p>
+              <p className="text-sm text-muted-foreground">{step.focus}</p>
+              <div className="flex flex-wrap gap-1.5 pt-1">
+                {step.skills.map((s) => (
+                  <Badge key={s} variant="secondary" className="text-xs">
+                    {s}
+                  </Badge>
+                ))}
+              </div>
             </div>
           ))}
         </div>
