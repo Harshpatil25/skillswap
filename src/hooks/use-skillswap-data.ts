@@ -288,3 +288,118 @@ export function usePlatformStats() {
     },
   });
 }
+
+export function useSavedWorkshops(profileId?: string | null) {
+  return useQuery({
+    queryKey: ["saved-workshops", profileId],
+    enabled: !!profileId,
+    queryFn: async () => {
+      const { data: favs, error } = await supabase
+        .from("favorites")
+        .select("*")
+        .eq("profile_id", profileId!)
+        .eq("entity_type", "workshop");
+      if (error) throw error;
+      const ids = (favs ?? []).map((f) => f.entity_id);
+      if (!ids.length) return [] as WorkshopWithHost[];
+      const { data, error: e2 } = await supabase
+        .from("workshops")
+        .select(WORKSHOP_SELECT)
+        .in("id", ids);
+      if (e2) throw e2;
+      return (data ?? []) as unknown as WorkshopWithHost[];
+    },
+  });
+}
+
+export function useMentorParticipants(profileId?: string | null) {
+  return useQuery({
+    queryKey: ["mentor-participants", profileId],
+    enabled: !!profileId,
+    queryFn: async () => {
+      const { data: mine, error } = await supabase
+        .from("workshops")
+        .select("id, title")
+        .eq("host_profile_id", profileId!);
+      if (error) throw error;
+      const ids = (mine ?? []).map((w) => w.id);
+      if (!ids.length) return [];
+      const { data, error: e2 } = await supabase
+        .from("workshop_registrations")
+        .select("*, workshop:workshops(title, slug), profile:profiles(full_name, avatar_url, city, email)")
+        .in("workshop_id", ids)
+        .order("created_at", { ascending: false });
+      if (e2) throw e2;
+      return (data ?? []) as unknown as Array<
+        Tables<"workshop_registrations"> & {
+          workshop: { title: string; slug: string } | null;
+          profile: { full_name: string; avatar_url: string | null; city: string | null; email: string | null } | null;
+        }
+      >;
+    },
+  });
+}
+
+export function useCompanyApplicants(companyId?: string | null) {
+  return useQuery({
+    queryKey: ["company-applicants", companyId],
+    enabled: !!companyId,
+    queryFn: async () => {
+      const { data: jobs, error } = await supabase
+        .from("internships")
+        .select("id")
+        .eq("company_id", companyId!);
+      if (error) throw error;
+      const ids = (jobs ?? []).map((j) => j.id);
+      if (!ids.length) return [];
+      const { data, error: e2 } = await supabase
+        .from("internship_applications")
+        .select("*, internship:internships(title), profile:profiles(full_name, avatar_url, city, email, headline)")
+        .in("internship_id", ids)
+        .order("created_at", { ascending: false });
+      if (e2) throw e2;
+      return (data ?? []) as unknown as Array<
+        Tables<"internship_applications"> & {
+          internship: { title: string } | null;
+          profile: {
+            full_name: string;
+            avatar_url: string | null;
+            city: string | null;
+            email: string | null;
+            headline: string | null;
+          } | null;
+        }
+      >;
+    },
+  });
+}
+
+export function useAllProfiles() {
+  return useQuery({
+    queryKey: ["admin-profiles"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("profiles")
+        .select("*")
+        .order("created_at", { ascending: false })
+        .limit(200);
+      if (error) throw error;
+      return (data ?? []) as Profile[];
+    },
+  });
+}
+
+export function useAllWorkshops() {
+  return useQuery({
+    queryKey: ["admin-workshops"],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from("workshops")
+        .select(WORKSHOP_SELECT)
+        .order("created_at", { ascending: false })
+        .limit(200);
+      if (error) throw error;
+      return (data ?? []) as unknown as WorkshopWithHost[];
+    },
+  });
+}
