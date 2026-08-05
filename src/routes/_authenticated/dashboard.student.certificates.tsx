@@ -51,11 +51,11 @@ function CertificatesPage() {
                 <p className="text-xs text-muted-foreground">Issued {formatDate(c.issued_at)}</p>
               </div>
               <p className="rounded-lg bg-muted px-3 py-2 font-mono text-xs text-muted-foreground">
-                {c.certificate_code}
+                {c.code}
               </p>
-              {c.file_url && (
+              {c.certificate_url && (
                 <Button asChild size="sm" variant="outline" className="w-full">
-                  <a href={c.file_url} target="_blank" rel="noreferrer">
+                  <a href={c.certificate_url} target="_blank" rel="noreferrer">
                     <Download /> Download
                   </a>
                 </Button>

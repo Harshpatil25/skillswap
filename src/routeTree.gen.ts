@@ -21,6 +21,9 @@ import { Route as WorkshopsSlugRouteImport } from './routes/workshops.$slug'
 import { Route as MentorsMentorIdRouteImport } from './routes/mentors.$mentorId'
 import { Route as AuthenticatedDashboardIndexRouteImport } from './routes/_authenticated/dashboard.index'
 import { Route as AuthenticatedDashboardStudentIndexRouteImport } from './routes/_authenticated/dashboard.student.index'
+import { Route as AuthenticatedDashboardStudentSavedRouteImport } from './routes/_authenticated/dashboard.student.saved'
+import { Route as AuthenticatedDashboardStudentLearningRouteImport } from './routes/_authenticated/dashboard.student.learning'
+import { Route as AuthenticatedDashboardStudentCertificatesRouteImport } from './routes/_authenticated/dashboard.student.certificates'
 
 const ResetPasswordRoute = ResetPasswordRouteImport.update({
   id: '/reset-password',
@@ -83,6 +86,24 @@ const AuthenticatedDashboardStudentIndexRoute =
     path: '/dashboard/student/',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedDashboardStudentSavedRoute =
+  AuthenticatedDashboardStudentSavedRouteImport.update({
+    id: '/dashboard/student/saved',
+    path: '/dashboard/student/saved',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedDashboardStudentLearningRoute =
+  AuthenticatedDashboardStudentLearningRouteImport.update({
+    id: '/dashboard/student/learning',
+    path: '/dashboard/student/learning',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedDashboardStudentCertificatesRoute =
+  AuthenticatedDashboardStudentCertificatesRouteImport.update({
+    id: '/dashboard/student/certificates',
+    path: '/dashboard/student/certificates',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -95,6 +116,9 @@ export interface FileRoutesByFullPath {
   '/workshops/$slug': typeof WorkshopsSlugRoute
   '/mentors/': typeof MentorsIndexRoute
   '/dashboard/': typeof AuthenticatedDashboardIndexRoute
+  '/dashboard/student/certificates': typeof AuthenticatedDashboardStudentCertificatesRoute
+  '/dashboard/student/learning': typeof AuthenticatedDashboardStudentLearningRoute
+  '/dashboard/student/saved': typeof AuthenticatedDashboardStudentSavedRoute
   '/dashboard/student/': typeof AuthenticatedDashboardStudentIndexRoute
 }
 export interface FileRoutesByTo {
@@ -108,6 +132,9 @@ export interface FileRoutesByTo {
   '/workshops/$slug': typeof WorkshopsSlugRoute
   '/mentors': typeof MentorsIndexRoute
   '/dashboard': typeof AuthenticatedDashboardIndexRoute
+  '/dashboard/student/certificates': typeof AuthenticatedDashboardStudentCertificatesRoute
+  '/dashboard/student/learning': typeof AuthenticatedDashboardStudentLearningRoute
+  '/dashboard/student/saved': typeof AuthenticatedDashboardStudentSavedRoute
   '/dashboard/student': typeof AuthenticatedDashboardStudentIndexRoute
 }
 export interface FileRoutesById {
@@ -123,6 +150,9 @@ export interface FileRoutesById {
   '/workshops/$slug': typeof WorkshopsSlugRoute
   '/mentors/': typeof MentorsIndexRoute
   '/_authenticated/dashboard/': typeof AuthenticatedDashboardIndexRoute
+  '/_authenticated/dashboard/student/certificates': typeof AuthenticatedDashboardStudentCertificatesRoute
+  '/_authenticated/dashboard/student/learning': typeof AuthenticatedDashboardStudentLearningRoute
+  '/_authenticated/dashboard/student/saved': typeof AuthenticatedDashboardStudentSavedRoute
   '/_authenticated/dashboard/student/': typeof AuthenticatedDashboardStudentIndexRoute
 }
 export interface FileRouteTypes {
@@ -138,6 +168,9 @@ export interface FileRouteTypes {
     | '/workshops/$slug'
     | '/mentors/'
     | '/dashboard/'
+    | '/dashboard/student/certificates'
+    | '/dashboard/student/learning'
+    | '/dashboard/student/saved'
     | '/dashboard/student/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -151,6 +184,9 @@ export interface FileRouteTypes {
     | '/workshops/$slug'
     | '/mentors'
     | '/dashboard'
+    | '/dashboard/student/certificates'
+    | '/dashboard/student/learning'
+    | '/dashboard/student/saved'
     | '/dashboard/student'
   id:
     | '__root__'
@@ -165,6 +201,9 @@ export interface FileRouteTypes {
     | '/workshops/$slug'
     | '/mentors/'
     | '/_authenticated/dashboard/'
+    | '/_authenticated/dashboard/student/certificates'
+    | '/_authenticated/dashboard/student/learning'
+    | '/_authenticated/dashboard/student/saved'
     | '/_authenticated/dashboard/student/'
   fileRoutesById: FileRoutesById
 }
@@ -267,16 +306,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardStudentIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/dashboard/student/saved': {
+      id: '/_authenticated/dashboard/student/saved'
+      path: '/dashboard/student/saved'
+      fullPath: '/dashboard/student/saved'
+      preLoaderRoute: typeof AuthenticatedDashboardStudentSavedRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/dashboard/student/learning': {
+      id: '/_authenticated/dashboard/student/learning'
+      path: '/dashboard/student/learning'
+      fullPath: '/dashboard/student/learning'
+      preLoaderRoute: typeof AuthenticatedDashboardStudentLearningRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/dashboard/student/certificates': {
+      id: '/_authenticated/dashboard/student/certificates'
+      path: '/dashboard/student/certificates'
+      fullPath: '/dashboard/student/certificates'
+      preLoaderRoute: typeof AuthenticatedDashboardStudentCertificatesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedDashboardIndexRoute: typeof AuthenticatedDashboardIndexRoute
+  AuthenticatedDashboardStudentCertificatesRoute: typeof AuthenticatedDashboardStudentCertificatesRoute
+  AuthenticatedDashboardStudentLearningRoute: typeof AuthenticatedDashboardStudentLearningRoute
+  AuthenticatedDashboardStudentSavedRoute: typeof AuthenticatedDashboardStudentSavedRoute
   AuthenticatedDashboardStudentIndexRoute: typeof AuthenticatedDashboardStudentIndexRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedDashboardIndexRoute: AuthenticatedDashboardIndexRoute,
+  AuthenticatedDashboardStudentCertificatesRoute:
+    AuthenticatedDashboardStudentCertificatesRoute,
+  AuthenticatedDashboardStudentLearningRoute:
+    AuthenticatedDashboardStudentLearningRoute,
+  AuthenticatedDashboardStudentSavedRoute:
+    AuthenticatedDashboardStudentSavedRoute,
   AuthenticatedDashboardStudentIndexRoute:
     AuthenticatedDashboardStudentIndexRoute,
 }
