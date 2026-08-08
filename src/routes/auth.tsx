@@ -57,6 +57,12 @@ const signInSchema = z.object({
 });
 
 const signUpSchema = signInSchema.extend({
+  password: z
+    .string()
+    .min(8, "Use at least 8 characters")
+    .max(72)
+    .regex(/[0-9]/, "Include at least one number")
+    .regex(/[^A-Za-z0-9]/, "Include at least one symbol"),
   fullName: z.string().trim().min(2, "Tell us your name").max(100),
   role: z.enum(["student", "mentor", "msme"]),
   city: z.string().trim().max(80).optional(),
@@ -65,6 +71,21 @@ const signUpSchema = signInSchema.extend({
 const forgotSchema = z.object({
   email: z.string().trim().email("Enter a valid email").max(255),
 });
+
+function friendlyAuthError(error: unknown): string {
+  const raw = error instanceof Error ? error.message : String(error);
+  const msg = raw.toLowerCase();
+  if (msg.includes("invalid login credentials")) return "Wrong email or password. Please try again.";
+  if (msg.includes("email not confirmed")) return "Please confirm your email, then sign in again.";
+  if (msg.includes("weak") || msg.includes("pwned"))
+    return "That password appears in known data breaches. Pick a more unique one.";
+  if (msg.includes("already registered") || msg.includes("user already"))
+    return "An account with this email already exists. Try signing in instead.";
+  if (msg.includes("rate limit") || msg.includes("too many"))
+    return "Too many attempts. Please wait a minute and try again.";
+  return raw;
+}
+
 
 function AuthPage() {
   const { mode = "signin", redirect } = useSearch({ from: "/auth" });
