@@ -1,5 +1,8 @@
 import { createFileRoute, Link, useNavigate, useSearch } from "@tanstack/react-router";
 import { useMutation } from "@tanstack/react-query";
+import { AnimatePresence, motion } from "framer-motion";
+import { FadeIn } from "@/components/common/motion";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2, Sparkles } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -57,6 +60,12 @@ const signInSchema = z.object({
 });
 
 const signUpSchema = signInSchema.extend({
+  password: z
+    .string()
+    .min(8, "Use at least 8 characters")
+    .max(72)
+    .regex(/[0-9]/, "Include at least one number")
+    .regex(/[^A-Za-z0-9]/, "Include at least one symbol"),
   fullName: z.string().trim().min(2, "Tell us your name").max(100),
   role: z.enum(["student", "mentor", "msme"]),
   city: z.string().trim().max(80).optional(),
@@ -65,6 +74,21 @@ const signUpSchema = signInSchema.extend({
 const forgotSchema = z.object({
   email: z.string().trim().email("Enter a valid email").max(255),
 });
+
+function friendlyAuthError(error: unknown): string {
+  const raw = error instanceof Error ? error.message : String(error);
+  const msg = raw.toLowerCase();
+  if (msg.includes("invalid login credentials")) return "Wrong email or password. Please try again.";
+  if (msg.includes("email not confirmed")) return "Please confirm your email, then sign in again.";
+  if (msg.includes("weak") || msg.includes("pwned"))
+    return "That password appears in known data breaches. Pick a more unique one.";
+  if (msg.includes("already registered") || msg.includes("user already"))
+    return "An account with this email already exists. Try signing in instead.";
+  if (msg.includes("rate limit") || msg.includes("too many"))
+    return "Too many attempts. Please wait a minute and try again.";
+  return raw;
+}
+
 
 function AuthPage() {
   const { mode = "signin", redirect } = useSearch({ from: "/auth" });
@@ -75,16 +99,16 @@ function AuthPage() {
   useEffect(() => setTab(mode), [mode]);
 
   useEffect(() => {
-    if (!loading && user && role) {
-      navigate({ to: redirect ?? ROLE_HOME[role] ?? "/dashboard/student", replace: true });
+    if (!loading && user) {
+      navigate({ to: redirect ?? (role ? ROLE_HOME[role] : null) ?? "/dashboard", replace: true });
     }
   }, [loading, user, role, navigate, redirect]);
 
   return (
     <div className="hero-surface flex min-h-screen items-center justify-center px-5 py-12">
-      <div className="w-full max-w-md">
+      <FadeIn className="w-full max-w-md">
         <Link to="/" className="mb-8 flex items-center justify-center gap-2">
-          <span className="gradient-primary flex size-9 items-center justify-center rounded-xl text-primary-foreground">
+          <span className="gradient-primary flex size-9 items-center justify-center rounded-xl text-primary-foreground transition-transform duration-300 hover:scale-105">
             <Sparkles className="size-4" />
           </span>
           <span className="text-lg font-extrabold tracking-tight">SkillSwap</span>
@@ -98,11 +122,21 @@ function AuthPage() {
                 <TabsTrigger value="signup">Create account</TabsTrigger>
               </TabsList>
               <div className="mt-6">
-                {tab === "signin" ? (
-                  <SignInForm onForgot={() => setTab("forgot")} />
-                ) : (
-                  <SignUpForm />
-                )}
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.div
+                    key={tab}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    {tab === "signin" ? (
+                      <SignInForm onForgot={() => setTab("forgot")} />
+                    ) : (
+                      <SignUpForm />
+                    )}
+                  </motion.div>
+                </AnimatePresence>
               </div>
               <GoogleButton />
             </Tabs>
@@ -110,11 +144,11 @@ function AuthPage() {
             <ForgotForm onBack={() => setTab("signin")} />
           )}
         </div>
-
         <p className="mt-6 text-center text-xs text-muted-foreground">
           By continuing you agree to SkillSwap's community guidelines.
         </p>
-      </div>
+      </FadeIn>
+
     </div>
   );
 }
@@ -155,7 +189,8 @@ function SignInForm({ onForgot }: { onForgot: () => void }) {
       if (error) throw error;
     },
     onSuccess: () => toast.success("Welcome back!"),
-    onError: (error: Error) => toast.error(error.message),
+    onError: (error: Error) => toast.error(friendlyAuthError(error)),
+
   });
 
   return (
@@ -221,10 +256,11 @@ function SignUpForm() {
       if (error) throw error;
     },
     onSuccess: () =>
-      toast.success("Account created", {
-        description: "Check your inbox to verify your email, then sign in.",
+      toast.success("Welcome to SkillSwap!", {
+        description: "Your account is ready — taking you to your dashboard.",
       }),
-    onError: (error: Error) => toast.error(error.message),
+    onError: (error: Error) => toast.error(friendlyAuthError(error)),
+
   });
 
   return (
@@ -263,7 +299,7 @@ function SignUpForm() {
             <FormItem>
               <FormLabel>Password</FormLabel>
               <FormControl>
-                <Input type="password" autoComplete="new-password" placeholder="At least 6 characters" {...field} />
+                <Input type="password" autoComplete="new-password" placeholder="8+ chars, 1 number, 1 symbol" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -328,7 +364,7 @@ function ForgotForm({ onBack }: { onBack: () => void }) {
       if (error) throw error;
     },
     onSuccess: () => toast.success("Reset link sent", { description: "Check your email inbox." }),
-    onError: (error: Error) => toast.error(error.message),
+    onError: (error: Error) => toast.error(friendlyAuthError(error)),
   });
 
   return (

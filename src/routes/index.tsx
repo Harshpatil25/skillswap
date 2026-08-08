@@ -180,7 +180,12 @@ function LandingPage() {
         </section>
 
         {/* STATS */}
-        <section className="border-b border-border bg-card">
+        <motion.section
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+          className="border-b border-border bg-card">
           <div className="container-page grid grid-cols-2 gap-6 py-10 lg:grid-cols-4">
             {statItems.map((item) => (
               <div key={item.label} className="flex items-center gap-3">
@@ -194,10 +199,15 @@ function LandingPage() {
               </div>
             ))}
           </div>
-        </section>
+        </motion.section>
 
         {/* POPULAR SKILLS */}
-        <section className="container-page py-16">
+        <motion.section
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+          className="container-page py-16">
           <SectionHeading
             eyebrow="Popular right now"
             title="Skills your neighbourhood is learning"
@@ -233,10 +243,15 @@ function LandingPage() {
               </motion.div>
             ))}
           </div>
-        </section>
+        </motion.section>
 
         {/* FEATURED WORKSHOPS */}
-        <section className="border-y border-border bg-card py-16">
+        <motion.section
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+          className="border-y border-border bg-card py-16">
           <div className="container-page">
             <SectionHeading
               eyebrow="Featured"
@@ -260,10 +275,15 @@ function LandingPage() {
               )}
             </div>
           </div>
-        </section>
+        </motion.section>
 
         {/* TOP MENTORS */}
-        <section className="container-page py-16">
+        <motion.section
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+          className="container-page py-16">
           <SectionHeading
             eyebrow="Top rated"
             title="Mentors your community trusts"
@@ -284,10 +304,15 @@ function LandingPage() {
               </div>
             )}
           </div>
-        </section>
+        </motion.section>
 
         {/* HOW IT WORKS */}
-        <section className="border-y border-border bg-card py-16">
+        <motion.section
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+          className="border-y border-border bg-card py-16">
           <div className="container-page">
             <SectionHeading eyebrow="How SkillSwap works" title="Four steps from curious to certified" />
             <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -309,10 +334,15 @@ function LandingPage() {
               ))}
             </div>
           </div>
-        </section>
+        </motion.section>
 
         {/* TESTIMONIALS */}
-        <section className="container-page py-16">
+        <motion.section
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+          className="container-page py-16">
           <SectionHeading eyebrow="Community" title="What local learners say" />
           <div className="mt-8 grid gap-6 lg:grid-cols-3">
             {TESTIMONIALS.map((item, index) => (
@@ -335,10 +365,15 @@ function LandingPage() {
               </motion.figure>
             ))}
           </div>
-        </section>
+        </motion.section>
 
         {/* CTA */}
-        <section className="container-page pb-20">
+        <motion.section
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+          className="container-page pb-20">
           <div className="gradient-primary flex flex-col items-center gap-5 rounded-3xl px-6 py-14 text-center text-primary-foreground shadow-glow">
             <h2 className="max-w-2xl text-3xl font-extrabold tracking-tight sm:text-4xl">
               Teach one skill. Learn another. Stay local.
@@ -358,7 +393,7 @@ function LandingPage() {
               </Button>
             </div>
           </div>
-        </section>
+        </motion.section>
       </main>
 
       <SiteFooter />
