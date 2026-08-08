@@ -199,7 +199,7 @@ function LandingPage() {
               </div>
             ))}
           </div>
-        </section>
+        </motion.section>
 
         {/* POPULAR SKILLS */}
         <motion.section
@@ -243,7 +243,7 @@ function LandingPage() {
               </motion.div>
             ))}
           </div>
-        </section>
+        </motion.section>
 
         {/* FEATURED WORKSHOPS */}
         <motion.section
@@ -275,7 +275,7 @@ function LandingPage() {
               )}
             </div>
           </div>
-        </section>
+        </motion.section>
 
         {/* TOP MENTORS */}
         <motion.section
@@ -304,7 +304,7 @@ function LandingPage() {
               </div>
             )}
           </div>
-        </section>
+        </motion.section>
 
         {/* HOW IT WORKS */}
         <motion.section
@@ -334,7 +334,7 @@ function LandingPage() {
               ))}
             </div>
           </div>
-        </section>
+        </motion.section>
 
         {/* TESTIMONIALS */}
         <motion.section
@@ -365,7 +365,7 @@ function LandingPage() {
               </motion.figure>
             ))}
           </div>
-        </section>
+        </motion.section>
 
         {/* CTA */}
         <motion.section
@@ -393,7 +393,7 @@ function LandingPage() {
               </Button>
             </div>
           </div>
-        </section>
+        </motion.section>
       </main>
 
       <SiteFooter />
