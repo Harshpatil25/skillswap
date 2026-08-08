@@ -96,16 +96,16 @@ function AuthPage() {
   useEffect(() => setTab(mode), [mode]);
 
   useEffect(() => {
-    if (!loading && user && role) {
-      navigate({ to: redirect ?? ROLE_HOME[role] ?? "/dashboard/student", replace: true });
+    if (!loading && user) {
+      navigate({ to: redirect ?? (role ? ROLE_HOME[role] : null) ?? "/dashboard", replace: true });
     }
   }, [loading, user, role, navigate, redirect]);
 
   return (
     <div className="hero-surface flex min-h-screen items-center justify-center px-5 py-12">
-      <div className="w-full max-w-md">
+      <FadeIn className="w-full max-w-md">
         <Link to="/" className="mb-8 flex items-center justify-center gap-2">
-          <span className="gradient-primary flex size-9 items-center justify-center rounded-xl text-primary-foreground">
+          <span className="gradient-primary flex size-9 items-center justify-center rounded-xl text-primary-foreground transition-transform duration-300 hover:scale-105">
             <Sparkles className="size-4" />
           </span>
           <span className="text-lg font-extrabold tracking-tight">SkillSwap</span>
@@ -119,11 +119,21 @@ function AuthPage() {
                 <TabsTrigger value="signup">Create account</TabsTrigger>
               </TabsList>
               <div className="mt-6">
-                {tab === "signin" ? (
-                  <SignInForm onForgot={() => setTab("forgot")} />
-                ) : (
-                  <SignUpForm />
-                )}
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.div
+                    key={tab}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    {tab === "signin" ? (
+                      <SignInForm onForgot={() => setTab("forgot")} />
+                    ) : (
+                      <SignUpForm />
+                    )}
+                  </motion.div>
+                </AnimatePresence>
               </div>
               <GoogleButton />
             </Tabs>
@@ -131,6 +141,7 @@ function AuthPage() {
             <ForgotForm onBack={() => setTab("signin")} />
           )}
         </div>
+
 
         <p className="mt-6 text-center text-xs text-muted-foreground">
           By continuing you agree to SkillSwap's community guidelines.
