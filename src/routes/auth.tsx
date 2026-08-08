@@ -189,7 +189,8 @@ function SignInForm({ onForgot }: { onForgot: () => void }) {
       if (error) throw error;
     },
     onSuccess: () => toast.success("Welcome back!"),
-    onError: (error: Error) => toast.error(error.message),
+    onError: (error: Error) => toast.error(friendlyAuthError(error)),
+
   });
 
   return (
@@ -255,10 +256,11 @@ function SignUpForm() {
       if (error) throw error;
     },
     onSuccess: () =>
-      toast.success("Account created", {
-        description: "Check your inbox to verify your email, then sign in.",
+      toast.success("Welcome to SkillSwap!", {
+        description: "Your account is ready — taking you to your dashboard.",
       }),
-    onError: (error: Error) => toast.error(error.message),
+    onError: (error: Error) => toast.error(friendlyAuthError(error)),
+
   });
 
   return (
