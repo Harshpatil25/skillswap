@@ -141,12 +141,11 @@ function AuthPage() {
             <ForgotForm onBack={() => setTab("signin")} />
           )}
         </div>
-
-
         <p className="mt-6 text-center text-xs text-muted-foreground">
           By continuing you agree to SkillSwap's community guidelines.
         </p>
-      </div>
+      </FadeIn>
+
     </div>
   );
 }
