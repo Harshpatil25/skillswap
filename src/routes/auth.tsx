@@ -364,7 +364,7 @@ function ForgotForm({ onBack }: { onBack: () => void }) {
       if (error) throw error;
     },
     onSuccess: () => toast.success("Reset link sent", { description: "Check your email inbox." }),
-    onError: (error: Error) => toast.error(error.message),
+    onError: (error: Error) => toast.error(friendlyAuthError(error)),
   });
 
   return (
