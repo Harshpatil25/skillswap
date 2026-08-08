@@ -299,7 +299,7 @@ function SignUpForm() {
             <FormItem>
               <FormLabel>Password</FormLabel>
               <FormControl>
-                <Input type="password" autoComplete="new-password" placeholder="At least 6 characters" {...field} />
+                <Input type="password" autoComplete="new-password" placeholder="8+ chars, 1 number, 1 symbol" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
