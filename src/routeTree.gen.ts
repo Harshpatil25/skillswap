@@ -9,57 +9,38 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
-import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
-import { Route as AuthRouteImport } from './routes/auth'
-import { Route as ExploreRouteImport } from './routes/explore'
-import { Route as HowItWorksRouteImport } from './routes/how-it-works'
-import { Route as InternshipsRouteImport } from './routes/internships'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
-import { Route as AuthenticatedNotificationsRouteImport } from './routes/_authenticated/notifications'
-import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
+import { Route as InternshipsRouteImport } from './routes/internships'
+import { Route as HowItWorksRouteImport } from './routes/how-it-works'
+import { Route as ExploreRouteImport } from './routes/explore'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as IndexRouteImport } from './routes/index'
 import { Route as MentorsIndexRouteImport } from './routes/mentors.index'
-import { Route as MentorsMentorIdRouteImport } from './routes/mentors.$mentorId'
 import { Route as WorkshopsSlugRouteImport } from './routes/workshops.$slug'
+import { Route as MentorsMentorIdRouteImport } from './routes/mentors.$mentorId'
+import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
+import { Route as AuthenticatedNotificationsRouteImport } from './routes/_authenticated/notifications'
 import { Route as AuthenticatedDashboardIndexRouteImport } from './routes/_authenticated/dashboard.index'
-import { Route as AuthenticatedDashboardAdminIndexRouteImport } from './routes/_authenticated/dashboard.admin.index'
-import { Route as AuthenticatedDashboardAdminReportsRouteImport } from './routes/_authenticated/dashboard.admin.reports'
-import { Route as AuthenticatedDashboardAdminUsersRouteImport } from './routes/_authenticated/dashboard.admin.users'
-import { Route as AuthenticatedDashboardAdminWorkshopsRouteImport } from './routes/_authenticated/dashboard.admin.workshops'
-import { Route as AuthenticatedDashboardCompanyIndexRouteImport } from './routes/_authenticated/dashboard.company.index'
-import { Route as AuthenticatedDashboardCompanyApplicantsRouteImport } from './routes/_authenticated/dashboard.company.applicants'
-import { Route as AuthenticatedDashboardCompanyInternshipsRouteImport } from './routes/_authenticated/dashboard.company.internships'
-import { Route as AuthenticatedDashboardCompanyProfileRouteImport } from './routes/_authenticated/dashboard.company.profile'
-import { Route as AuthenticatedDashboardMentorIndexRouteImport } from './routes/_authenticated/dashboard.mentor.index'
-import { Route as AuthenticatedDashboardMentorParticipantsRouteImport } from './routes/_authenticated/dashboard.mentor.participants'
-import { Route as AuthenticatedDashboardMentorWorkshopsRouteImport } from './routes/_authenticated/dashboard.mentor.workshops'
 import { Route as AuthenticatedDashboardStudentIndexRouteImport } from './routes/_authenticated/dashboard.student.index'
-import { Route as AuthenticatedDashboardStudentCertificatesRouteImport } from './routes/_authenticated/dashboard.student.certificates'
-import { Route as AuthenticatedDashboardStudentLearningRouteImport } from './routes/_authenticated/dashboard.student.learning'
+import { Route as AuthenticatedDashboardMentorIndexRouteImport } from './routes/_authenticated/dashboard.mentor.index'
+import { Route as AuthenticatedDashboardCompanyIndexRouteImport } from './routes/_authenticated/dashboard.company.index'
+import { Route as AuthenticatedDashboardAdminIndexRouteImport } from './routes/_authenticated/dashboard.admin.index'
 import { Route as AuthenticatedDashboardStudentSavedRouteImport } from './routes/_authenticated/dashboard.student.saved'
+import { Route as AuthenticatedDashboardStudentLearningRouteImport } from './routes/_authenticated/dashboard.student.learning'
+import { Route as AuthenticatedDashboardStudentCertificatesRouteImport } from './routes/_authenticated/dashboard.student.certificates'
+import { Route as AuthenticatedDashboardMentorWorkshopsRouteImport } from './routes/_authenticated/dashboard.mentor.workshops'
+import { Route as AuthenticatedDashboardMentorParticipantsRouteImport } from './routes/_authenticated/dashboard.mentor.participants'
+import { Route as AuthenticatedDashboardCompanyProfileRouteImport } from './routes/_authenticated/dashboard.company.profile'
+import { Route as AuthenticatedDashboardCompanyInternshipsRouteImport } from './routes/_authenticated/dashboard.company.internships'
+import { Route as AuthenticatedDashboardCompanyApplicantsRouteImport } from './routes/_authenticated/dashboard.company.applicants'
+import { Route as AuthenticatedDashboardAdminWorkshopsRouteImport } from './routes/_authenticated/dashboard.admin.workshops'
+import { Route as AuthenticatedDashboardAdminUsersRouteImport } from './routes/_authenticated/dashboard.admin.users'
+import { Route as AuthenticatedDashboardAdminReportsRouteImport } from './routes/_authenticated/dashboard.admin.reports'
 
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
-  id: '/_authenticated',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AuthRoute = AuthRouteImport.update({
-  id: '/auth',
-  path: '/auth',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ExploreRoute = ExploreRouteImport.update({
-  id: '/explore',
-  path: '/explore',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const HowItWorksRoute = HowItWorksRouteImport.update({
-  id: '/how-it-works',
-  path: '/how-it-works',
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
   getParentRoute: () => rootRouteImport,
 } as any)
 const InternshipsRoute = InternshipsRouteImport.update({
@@ -67,30 +48,33 @@ const InternshipsRoute = InternshipsRouteImport.update({
   path: '/internships',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ResetPasswordRoute = ResetPasswordRouteImport.update({
-  id: '/reset-password',
-  path: '/reset-password',
+const HowItWorksRoute = HowItWorksRouteImport.update({
+  id: '/how-it-works',
+  path: '/how-it-works',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuthenticatedNotificationsRoute =
-  AuthenticatedNotificationsRouteImport.update({
-    id: '/notifications',
-    path: '/notifications',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedSettingsRoute = AuthenticatedSettingsRouteImport.update({
-  id: '/settings',
-  path: '/settings',
-  getParentRoute: () => AuthenticatedRouteRoute,
+const ExploreRoute = ExploreRouteImport.update({
+  id: '/explore',
+  path: '/explore',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const MentorsIndexRoute = MentorsIndexRouteImport.update({
   id: '/mentors/',
   path: '/mentors/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MentorsMentorIdRoute = MentorsMentorIdRouteImport.update({
-  id: '/mentors/$mentorId',
-  path: '/mentors/$mentorId',
   getParentRoute: () => rootRouteImport,
 } as any)
 const WorkshopsSlugRoute = WorkshopsSlugRouteImport.update({
@@ -98,76 +82,26 @@ const WorkshopsSlugRoute = WorkshopsSlugRouteImport.update({
   path: '/workshops/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MentorsMentorIdRoute = MentorsMentorIdRouteImport.update({
+  id: '/mentors/$mentorId',
+  path: '/mentors/$mentorId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedSettingsRoute = AuthenticatedSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedNotificationsRoute =
+  AuthenticatedNotificationsRouteImport.update({
+    id: '/notifications',
+    path: '/notifications',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedDashboardIndexRoute =
   AuthenticatedDashboardIndexRouteImport.update({
     id: '/dashboard/',
     path: '/dashboard/',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedDashboardAdminIndexRoute =
-  AuthenticatedDashboardAdminIndexRouteImport.update({
-    id: '/dashboard/admin/',
-    path: '/dashboard/admin/',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedDashboardAdminReportsRoute =
-  AuthenticatedDashboardAdminReportsRouteImport.update({
-    id: '/dashboard/admin/reports',
-    path: '/dashboard/admin/reports',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedDashboardAdminUsersRoute =
-  AuthenticatedDashboardAdminUsersRouteImport.update({
-    id: '/dashboard/admin/users',
-    path: '/dashboard/admin/users',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedDashboardAdminWorkshopsRoute =
-  AuthenticatedDashboardAdminWorkshopsRouteImport.update({
-    id: '/dashboard/admin/workshops',
-    path: '/dashboard/admin/workshops',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedDashboardCompanyIndexRoute =
-  AuthenticatedDashboardCompanyIndexRouteImport.update({
-    id: '/dashboard/company/',
-    path: '/dashboard/company/',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedDashboardCompanyApplicantsRoute =
-  AuthenticatedDashboardCompanyApplicantsRouteImport.update({
-    id: '/dashboard/company/applicants',
-    path: '/dashboard/company/applicants',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedDashboardCompanyInternshipsRoute =
-  AuthenticatedDashboardCompanyInternshipsRouteImport.update({
-    id: '/dashboard/company/internships',
-    path: '/dashboard/company/internships',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedDashboardCompanyProfileRoute =
-  AuthenticatedDashboardCompanyProfileRouteImport.update({
-    id: '/dashboard/company/profile',
-    path: '/dashboard/company/profile',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedDashboardMentorIndexRoute =
-  AuthenticatedDashboardMentorIndexRouteImport.update({
-    id: '/dashboard/mentor/',
-    path: '/dashboard/mentor/',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedDashboardMentorParticipantsRoute =
-  AuthenticatedDashboardMentorParticipantsRouteImport.update({
-    id: '/dashboard/mentor/participants',
-    path: '/dashboard/mentor/participants',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any)
-const AuthenticatedDashboardMentorWorkshopsRoute =
-  AuthenticatedDashboardMentorWorkshopsRouteImport.update({
-    id: '/dashboard/mentor/workshops',
-    path: '/dashboard/mentor/workshops',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedDashboardStudentIndexRoute =
@@ -176,10 +110,28 @@ const AuthenticatedDashboardStudentIndexRoute =
     path: '/dashboard/student/',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
-const AuthenticatedDashboardStudentCertificatesRoute =
-  AuthenticatedDashboardStudentCertificatesRouteImport.update({
-    id: '/dashboard/student/certificates',
-    path: '/dashboard/student/certificates',
+const AuthenticatedDashboardMentorIndexRoute =
+  AuthenticatedDashboardMentorIndexRouteImport.update({
+    id: '/dashboard/mentor/',
+    path: '/dashboard/mentor/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedDashboardCompanyIndexRoute =
+  AuthenticatedDashboardCompanyIndexRouteImport.update({
+    id: '/dashboard/company/',
+    path: '/dashboard/company/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedDashboardAdminIndexRoute =
+  AuthenticatedDashboardAdminIndexRouteImport.update({
+    id: '/dashboard/admin/',
+    path: '/dashboard/admin/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedDashboardStudentSavedRoute =
+  AuthenticatedDashboardStudentSavedRouteImport.update({
+    id: '/dashboard/student/saved',
+    path: '/dashboard/student/saved',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedDashboardStudentLearningRoute =
@@ -188,10 +140,58 @@ const AuthenticatedDashboardStudentLearningRoute =
     path: '/dashboard/student/learning',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
-const AuthenticatedDashboardStudentSavedRoute =
-  AuthenticatedDashboardStudentSavedRouteImport.update({
-    id: '/dashboard/student/saved',
-    path: '/dashboard/student/saved',
+const AuthenticatedDashboardStudentCertificatesRoute =
+  AuthenticatedDashboardStudentCertificatesRouteImport.update({
+    id: '/dashboard/student/certificates',
+    path: '/dashboard/student/certificates',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedDashboardMentorWorkshopsRoute =
+  AuthenticatedDashboardMentorWorkshopsRouteImport.update({
+    id: '/dashboard/mentor/workshops',
+    path: '/dashboard/mentor/workshops',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedDashboardMentorParticipantsRoute =
+  AuthenticatedDashboardMentorParticipantsRouteImport.update({
+    id: '/dashboard/mentor/participants',
+    path: '/dashboard/mentor/participants',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedDashboardCompanyProfileRoute =
+  AuthenticatedDashboardCompanyProfileRouteImport.update({
+    id: '/dashboard/company/profile',
+    path: '/dashboard/company/profile',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedDashboardCompanyInternshipsRoute =
+  AuthenticatedDashboardCompanyInternshipsRouteImport.update({
+    id: '/dashboard/company/internships',
+    path: '/dashboard/company/internships',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedDashboardCompanyApplicantsRoute =
+  AuthenticatedDashboardCompanyApplicantsRouteImport.update({
+    id: '/dashboard/company/applicants',
+    path: '/dashboard/company/applicants',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedDashboardAdminWorkshopsRoute =
+  AuthenticatedDashboardAdminWorkshopsRouteImport.update({
+    id: '/dashboard/admin/workshops',
+    path: '/dashboard/admin/workshops',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedDashboardAdminUsersRoute =
+  AuthenticatedDashboardAdminUsersRouteImport.update({
+    id: '/dashboard/admin/users',
+    path: '/dashboard/admin/users',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedDashboardAdminReportsRoute =
+  AuthenticatedDashboardAdminReportsRouteImport.update({
+    id: '/dashboard/admin/reports',
+    path: '/dashboard/admin/reports',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 
@@ -390,39 +390,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_authenticated': {
-      id: '/_authenticated'
-      path: ''
-      fullPath: '/'
-      preLoaderRoute: typeof AuthenticatedRouteRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/auth': {
-      id: '/auth'
-      path: '/auth'
-      fullPath: '/auth'
-      preLoaderRoute: typeof AuthRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/explore': {
-      id: '/explore'
-      path: '/explore'
-      fullPath: '/explore'
-      preLoaderRoute: typeof ExploreRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/how-it-works': {
-      id: '/how-it-works'
-      path: '/how-it-works'
-      fullPath: '/how-it-works'
-      preLoaderRoute: typeof HowItWorksRouteImport
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/internships': {
@@ -432,39 +404,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof InternshipsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/reset-password': {
-      id: '/reset-password'
-      path: '/reset-password'
-      fullPath: '/reset-password'
-      preLoaderRoute: typeof ResetPasswordRouteImport
+    '/how-it-works': {
+      id: '/how-it-works'
+      path: '/how-it-works'
+      fullPath: '/how-it-works'
+      preLoaderRoute: typeof HowItWorksRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_authenticated/notifications': {
-      id: '/_authenticated/notifications'
-      path: '/notifications'
-      fullPath: '/notifications'
-      preLoaderRoute: typeof AuthenticatedNotificationsRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
+    '/explore': {
+      id: '/explore'
+      path: '/explore'
+      fullPath: '/explore'
+      preLoaderRoute: typeof ExploreRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/_authenticated/settings': {
-      id: '/_authenticated/settings'
-      path: '/settings'
-      fullPath: '/settings'
-      preLoaderRoute: typeof AuthenticatedSettingsRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/mentors/': {
       id: '/mentors/'
       path: '/mentors'
       fullPath: '/mentors/'
       preLoaderRoute: typeof MentorsIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/mentors/$mentorId': {
-      id: '/mentors/$mentorId'
-      path: '/mentors/$mentorId'
-      fullPath: '/mentors/$mentorId'
-      preLoaderRoute: typeof MentorsMentorIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/workshops/$slug': {
@@ -474,88 +453,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WorkshopsSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/mentors/$mentorId': {
+      id: '/mentors/$mentorId'
+      path: '/mentors/$mentorId'
+      fullPath: '/mentors/$mentorId'
+      preLoaderRoute: typeof MentorsMentorIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/settings': {
+      id: '/_authenticated/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof AuthenticatedSettingsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/notifications': {
+      id: '/_authenticated/notifications'
+      path: '/notifications'
+      fullPath: '/notifications'
+      preLoaderRoute: typeof AuthenticatedNotificationsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/dashboard/': {
       id: '/_authenticated/dashboard/'
       path: '/dashboard'
       fullPath: '/dashboard/'
       preLoaderRoute: typeof AuthenticatedDashboardIndexRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/dashboard/admin/': {
-      id: '/_authenticated/dashboard/admin/'
-      path: '/dashboard/admin'
-      fullPath: '/dashboard/admin/'
-      preLoaderRoute: typeof AuthenticatedDashboardAdminIndexRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/dashboard/admin/reports': {
-      id: '/_authenticated/dashboard/admin/reports'
-      path: '/dashboard/admin/reports'
-      fullPath: '/dashboard/admin/reports'
-      preLoaderRoute: typeof AuthenticatedDashboardAdminReportsRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/dashboard/admin/users': {
-      id: '/_authenticated/dashboard/admin/users'
-      path: '/dashboard/admin/users'
-      fullPath: '/dashboard/admin/users'
-      preLoaderRoute: typeof AuthenticatedDashboardAdminUsersRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/dashboard/admin/workshops': {
-      id: '/_authenticated/dashboard/admin/workshops'
-      path: '/dashboard/admin/workshops'
-      fullPath: '/dashboard/admin/workshops'
-      preLoaderRoute: typeof AuthenticatedDashboardAdminWorkshopsRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/dashboard/company/': {
-      id: '/_authenticated/dashboard/company/'
-      path: '/dashboard/company'
-      fullPath: '/dashboard/company/'
-      preLoaderRoute: typeof AuthenticatedDashboardCompanyIndexRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/dashboard/company/applicants': {
-      id: '/_authenticated/dashboard/company/applicants'
-      path: '/dashboard/company/applicants'
-      fullPath: '/dashboard/company/applicants'
-      preLoaderRoute: typeof AuthenticatedDashboardCompanyApplicantsRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/dashboard/company/internships': {
-      id: '/_authenticated/dashboard/company/internships'
-      path: '/dashboard/company/internships'
-      fullPath: '/dashboard/company/internships'
-      preLoaderRoute: typeof AuthenticatedDashboardCompanyInternshipsRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/dashboard/company/profile': {
-      id: '/_authenticated/dashboard/company/profile'
-      path: '/dashboard/company/profile'
-      fullPath: '/dashboard/company/profile'
-      preLoaderRoute: typeof AuthenticatedDashboardCompanyProfileRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/dashboard/mentor/': {
-      id: '/_authenticated/dashboard/mentor/'
-      path: '/dashboard/mentor'
-      fullPath: '/dashboard/mentor/'
-      preLoaderRoute: typeof AuthenticatedDashboardMentorIndexRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/dashboard/mentor/participants': {
-      id: '/_authenticated/dashboard/mentor/participants'
-      path: '/dashboard/mentor/participants'
-      fullPath: '/dashboard/mentor/participants'
-      preLoaderRoute: typeof AuthenticatedDashboardMentorParticipantsRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/dashboard/mentor/workshops': {
-      id: '/_authenticated/dashboard/mentor/workshops'
-      path: '/dashboard/mentor/workshops'
-      fullPath: '/dashboard/mentor/workshops'
-      preLoaderRoute: typeof AuthenticatedDashboardMentorWorkshopsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/dashboard/student/': {
@@ -565,11 +488,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardStudentIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_authenticated/dashboard/student/certificates': {
-      id: '/_authenticated/dashboard/student/certificates'
-      path: '/dashboard/student/certificates'
-      fullPath: '/dashboard/student/certificates'
-      preLoaderRoute: typeof AuthenticatedDashboardStudentCertificatesRouteImport
+    '/_authenticated/dashboard/mentor/': {
+      id: '/_authenticated/dashboard/mentor/'
+      path: '/dashboard/mentor'
+      fullPath: '/dashboard/mentor/'
+      preLoaderRoute: typeof AuthenticatedDashboardMentorIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/dashboard/company/': {
+      id: '/_authenticated/dashboard/company/'
+      path: '/dashboard/company'
+      fullPath: '/dashboard/company/'
+      preLoaderRoute: typeof AuthenticatedDashboardCompanyIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/dashboard/admin/': {
+      id: '/_authenticated/dashboard/admin/'
+      path: '/dashboard/admin'
+      fullPath: '/dashboard/admin/'
+      preLoaderRoute: typeof AuthenticatedDashboardAdminIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/dashboard/student/saved': {
+      id: '/_authenticated/dashboard/student/saved'
+      path: '/dashboard/student/saved'
+      fullPath: '/dashboard/student/saved'
+      preLoaderRoute: typeof AuthenticatedDashboardStudentSavedRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/dashboard/student/learning': {
@@ -579,11 +523,67 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardStudentLearningRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_authenticated/dashboard/student/saved': {
-      id: '/_authenticated/dashboard/student/saved'
-      path: '/dashboard/student/saved'
-      fullPath: '/dashboard/student/saved'
-      preLoaderRoute: typeof AuthenticatedDashboardStudentSavedRouteImport
+    '/_authenticated/dashboard/student/certificates': {
+      id: '/_authenticated/dashboard/student/certificates'
+      path: '/dashboard/student/certificates'
+      fullPath: '/dashboard/student/certificates'
+      preLoaderRoute: typeof AuthenticatedDashboardStudentCertificatesRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/dashboard/mentor/workshops': {
+      id: '/_authenticated/dashboard/mentor/workshops'
+      path: '/dashboard/mentor/workshops'
+      fullPath: '/dashboard/mentor/workshops'
+      preLoaderRoute: typeof AuthenticatedDashboardMentorWorkshopsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/dashboard/mentor/participants': {
+      id: '/_authenticated/dashboard/mentor/participants'
+      path: '/dashboard/mentor/participants'
+      fullPath: '/dashboard/mentor/participants'
+      preLoaderRoute: typeof AuthenticatedDashboardMentorParticipantsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/dashboard/company/profile': {
+      id: '/_authenticated/dashboard/company/profile'
+      path: '/dashboard/company/profile'
+      fullPath: '/dashboard/company/profile'
+      preLoaderRoute: typeof AuthenticatedDashboardCompanyProfileRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/dashboard/company/internships': {
+      id: '/_authenticated/dashboard/company/internships'
+      path: '/dashboard/company/internships'
+      fullPath: '/dashboard/company/internships'
+      preLoaderRoute: typeof AuthenticatedDashboardCompanyInternshipsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/dashboard/company/applicants': {
+      id: '/_authenticated/dashboard/company/applicants'
+      path: '/dashboard/company/applicants'
+      fullPath: '/dashboard/company/applicants'
+      preLoaderRoute: typeof AuthenticatedDashboardCompanyApplicantsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/dashboard/admin/workshops': {
+      id: '/_authenticated/dashboard/admin/workshops'
+      path: '/dashboard/admin/workshops'
+      fullPath: '/dashboard/admin/workshops'
+      preLoaderRoute: typeof AuthenticatedDashboardAdminWorkshopsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/dashboard/admin/users': {
+      id: '/_authenticated/dashboard/admin/users'
+      path: '/dashboard/admin/users'
+      fullPath: '/dashboard/admin/users'
+      preLoaderRoute: typeof AuthenticatedDashboardAdminUsersRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/dashboard/admin/reports': {
+      id: '/_authenticated/dashboard/admin/reports'
+      path: '/dashboard/admin/reports'
+      fullPath: '/dashboard/admin/reports'
+      preLoaderRoute: typeof AuthenticatedDashboardAdminReportsRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
   }
