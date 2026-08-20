@@ -7,7 +7,7 @@ export default defineConfig({
     // "#tanstack-router-entry" through a build-time alias, which does not exist
     // when @tanstack/start-server-core is left in node_modules at runtime.
     noExternals: true,
-  },
+  } as never,
 
   tanstackStart: {
     server: {
